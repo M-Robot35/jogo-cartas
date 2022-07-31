@@ -2,23 +2,31 @@ const statusNome = document.querySelector('.status-playerinfo');
 const modalConteiner = document.querySelector('.conteiner-modal');
 const modalClose = document.querySelector('.close-modal');
 
+const btnVoltar = document.querySelector('.btn-foote-back');
+const btnReload = document.querySelector('.btn-foote-reload');
+
+
 statusNome.innerHTML = sessionStorage.getItem('player');
 statusNome.style.textTransform = 'capitalize';
 
-modalClose.addEventListener('click',()=>{
-    modalConteiner.style.display = 'none'
+modalConteiner.addEventListener('click',({ target  })=>{
+    const click = target.className  
+
+    if (click === 'close-modal' || click === 'conteiner-modal'){
+        modalConteiner.style.display = 'none'
+    }
 })
 
-modalConteiner.addEventListener('click',()=>{
+btnVoltar.addEventListener('click',(e)=>{
     modalConteiner.style.display = 'none'
+
 })
 
-
-document.querySelector('.btn-foote-reload').addEventListener('click',()=>{
+btnReload.addEventListener('click',(event)=>{
+    modalConteiner.style.display = 'none'
     location.reload()
+
 })
-
-
 
 
 

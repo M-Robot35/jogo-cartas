@@ -9,6 +9,10 @@ var allGame = document.querySelector('.jogadas');
 var allWin = document.querySelector('.acertos');
 const timeout = document.querySelector('.timeOff');
 
+const modaExit = ()=>{
+    modalConteiner.style.display = 'none'
+}
+
 
 let allClick = 0
 let allAcerts = 0
@@ -28,7 +32,7 @@ const imgCards = [
     'pickle-rick',
     'rick',
     'summer',
-    'meeseeks',
+    'meeseeks',  
     'scroopy'
 ]
 
