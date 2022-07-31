@@ -1,10 +1,23 @@
+
 const gridLayout = document.querySelector('.grid');
 const player = document.querySelector('.player');
 const limitTime = document.querySelector('.timer');
 
-document.querySelector('.btn-foote-reload').addEventListener('click',()=>{
-    location.reload()
-})
+// MODAL STATuS
+var timeOff = document.querySelector('.timeOff');
+var allGame = document.querySelector('.jogadas');
+var allWin = document.querySelector('.acertos');
+const timeout = document.querySelector('.timeOff');
+
+
+let allClick = 0
+let allAcerts = 0
+
+// MODAL STATuS
+const modalStatusPlayer = ()=>{
+    allGame.innerHTML = allClick -allAcerts
+    allWin.innerHTML = allAcerts    
+}
 
 const imgCards = [
     'beth',
@@ -22,6 +35,7 @@ const imgCards = [
 const cardElement = (tag, className)=>{
     const elemento = document.createElement(tag);
     elemento.className = className;
+    
     return elemento
 }
 
@@ -30,6 +44,8 @@ const checkedEndGame = ()=>{
 
     if(allCards.length === 20){
         clearInterval(this.loop)
+        modalConteiner.style.display = 'flex'
+        modalStatusPlayer()
     }
 };
 
@@ -44,10 +60,12 @@ const checkCard = ()=>{
     if (firstCharacter == secondCharacter){
 
         firstCard.firstChild.classList.add('win-desable')
-        secondCard.firstChild.classList.add('win-desable')
-        
+        secondCard.firstChild.classList.add('win-desable')        
         firstCard = '';
         secondCard = '';
+
+        // MODAL 
+        allAcerts +=1
 
         checkedEndGame();
         
@@ -57,6 +75,9 @@ const checkCard = ()=>{
             secondCard.classList.remove('revel-card')
             firstCard = '';
             secondCard = '';
+
+            // MODAL 
+            allClick +=1            
             
         },700)
     }
@@ -77,7 +98,6 @@ const revelaCarta = ({ target })=>{
         secondCard = target.parentNode        
         checkCard();
     };
-
 }
 
 const criarElemento = (character)=>{
